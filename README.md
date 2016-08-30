@@ -5,7 +5,7 @@ Docker Container for [Doomsday Engine](http://wiki.dengine.net/w/Multiplayer_ser
 
 Dockerfile builds the following,
 
-- Ubuntu 16.06 and packages to run Doomsday 2.0
+- Ubuntu 16.04 and packages to run Doomsday 2.0
 - Downloads and installs Doomsday 2.0
 - Downloads Doom1 Shareware WAD
 - Add basic deathmatch `autoexec.cfg`
