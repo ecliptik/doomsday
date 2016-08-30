@@ -32,3 +32,9 @@ docker run -it --rm -p 13209:13209 -v `pwd`:/app doomsday -game doom1-share -p /
 ```
 
 Update the command line options to meet the game type, port etc. See the [Doomsday Multiplayer Server](http://wiki.dengine.net/w/Multiplayer_server) for additional options and configuration.
+
+## Known Issues
+
+- Running the container without any arguments will not work, even if they're in the Dockerfile `CMD` statement. Workaround is to pass them in `docker run`
+- Ctrl-C to stop the container will not work, and the running container must be killed with `docker rm -f`
+
