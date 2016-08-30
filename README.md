@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/image/ecliptik/doomsday.svg)](http://microbadger.com/images/ecliptik/doomsday "Get your own image badge on microbadger.com")
+
 # doomsday
 Docker Container for [Doomsday Engine](http://wiki.dengine.net/w/Multiplayer_server) Server.
 
