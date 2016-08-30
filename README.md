@@ -3,18 +3,19 @@
 # doomsday
 Docker Container for [Doomsday Engine](http://wiki.dengine.net/w/Multiplayer_server) Server.
 
-This container does the following things,
+Dockerfile builds the following,
 
-- Configures Ubuntu 16.06 to run Doomsday
-- Downloads and installs a version of Doomsday
+- Ubuntu 16.06 and packages to run Doomsday 2.0
+- Downloads and installs Doomsday 2.0
 - Downloads Doom1 Shareware WAD
+- Add basic deathmatch `autoexec.cfg`
 
 ## Building
 
 Build the container
 
 ```
-docker built -t doomsday .
+docker build -t doomsday .
 ```
 
 # Running
