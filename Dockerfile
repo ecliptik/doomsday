@@ -1,50 +1,47 @@
-FROM ubuntu:16.04
-MAINTAINER Micheal Waltz <ecliptik@gmail.com>
+FROM ubuntu:18.04 AS base
+LABEL maintainer="Micheal Waltz <docker@ecliptik.com>"
 
 #Setup basic environment
-ENV DEBIAN_FRONTEND=noninteractive LANG=en_US.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=en_US.UTF-8
-
-#Doomsday
-ENV DOOMSDAY=doomsday_2.0.0-build2068_amd64.deb
-ENV DOOMSDAYURL=http://heanet.dl.sourceforge.net/project/deng/Doomsday%20Engine/Builds/$DOOMSDAY
-
-#Doom Shareware
-ENV DOOMWAD=doom1.wad
-ENV DOOMURL=http://distro.ibiblio.org/pub/linux/distributions/slitaz/sources/packages/d/$DOOMWAD
+ENV DEBIAN_FRONTEND=noninteractive \
+    DOOMSDAY_DEB=doomsday_2.1.1_amd64.deb \
+    DOOMSDAY_URL=https://files.dengine.net/archive/ \
+    DOOM_WAD=doom1.wad \
+    DOOM_URL=http://distro.ibiblio.org/pub/linux/distributions/slitaz/sources/packages/d/
 
 #DIR
-ENV WORKDIR=/app
-WORKDIR $WORKDIR
-RUN mkdir -p $WORKDIR
+WORKDIR /app
 
 #Download Doomsday and install
-RUN set -ex && \
-        buildDeps=' \
-                wget \
-        ' && \
-        runDeps=' \
-                libqt5gui5 \
-                libqt5x11extras5 \
-                libsdl2-mixer-2.0-0 \
-                libxrandr2 \
-                libxxf86vm1 \
-                libfluidsynth1 \
-                libqt5opengl5 \
-        ' && \
-        apt-get update && \
-        apt-get install -y --no-install-recommends $buildDeps $runDeps && \
-        wget $DOOMSDAYURL -O $WORKDIR/$DOOMSDAY && \
-        wget $DOOMURL -O $WORKDIR/$DOOMWAD && \
-        dpkg --install $WORKDIR/$DOOMSDAY && \
-        apt-get purge -y --auto-remove $buildDeps && \
-        rm -rf /var/lib/apt/lists/* $WORKDIR/$DOOMSDAY
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      wget \
+      ca-certificates \
+      libqt5gui5 \
+      libqt5x11extras5 \
+      libsdl2-mixer-2.0-0 \
+      libxrandr2 \
+      libxxf86vm1 \
+      libfluidsynth1 \
+      libqt5opengl5 \
+      libminizip1
+
+#Download shareware doom1 wad
+RUN wget $DOOM_URL/$DOOM_WAD -O ./$DOOM_WAD
+
+#Build image
+FROM base AS build
+RUN wget $DOOMSDAY_URL/$DOOMSDAY_DEB -O /tmp/$DOOMSDAY_DEB
+
+RUN dpkg --install /tmp/$DOOMSDAY_DEB
+
+#Runtime image
+FROM base AS run
 
 #Copy files
-COPY . ${WORKDIR}
+COPY --from=build /usr /usr
+COPY . .
 
-#Open Doomsday port
-ENV PORT=13209
-EXPOSE $PORT
+#Doomsday port
+EXPOSE 13209
 
 #Run doomsday-server
 ENTRYPOINT [ "doomsday-server" ]

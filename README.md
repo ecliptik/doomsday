@@ -1,12 +1,12 @@
 [![](https://images.microbadger.com/badges/image/ecliptik/doomsday.svg)](http://microbadger.com/images/ecliptik/doomsday "Get your own image badge on microbadger.com")
 
 # doomsday
-Docker Container for [Doomsday Engine](http://wiki.dengine.net/w/Multiplayer_server) Server.
+Docker Container for [Doomsday Engine Multiplayer Server](https://manual.dengine.net/multiplayer/running_a_server).
 
 Dockerfile builds the following,
 
-- Ubuntu 16.04 and packages to run Doomsday 2.0
-- Downloads and installs Doomsday 2.0
+- Ubuntu 18.04 and packages to run Doomsday 2.1
+- Downloads and installs Doomsday 2.1
 - Downloads Doom1 Shareware WAD
 - Add basic deathmatch `autoexec.cfg`
 
