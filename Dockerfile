@@ -3,7 +3,7 @@ LABEL maintainer="Micheal Waltz <docker@ecliptik.com>"
 
 #Setup basic environment
 ENV DEBIAN_FRONTEND=noninteractive \
-    DOOMSDAY_DEB=doomsday_2.1.1_amd64.deb \
+    DOOMSDAY_DEB=doomsday_2.2.2_amd64.deb \
     DOOMSDAY_URL=https://files.dengine.net/archive/ \
     DOOM_WAD=doom1.wad \
     DOOM_URL=http://distro.ibiblio.org/pub/linux/distributions/slitaz/sources/packages/d/
