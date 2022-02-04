@@ -3,7 +3,7 @@ LABEL maintainer="Micheal Waltz <docker@ecliptik.com>"
 
 #Setup basic environment
 ENV DEBIAN_FRONTEND=noninteractive \
-    DOOMSDAY_DEB=doomsday_2.2.2_amd64.deb \
+    DOOMSDAY_DEB=doomsday_2.3.1_amd64.deb \
     DOOMSDAY_URL=https://files.dengine.net/archive/ \
     DOOM_WAD=doom1.wad \
     DOOM_URL=http://distro.ibiblio.org/pub/linux/distributions/slitaz/sources/packages/d/
@@ -15,6 +15,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
       ca-certificates \
+      libncurses5 \
       libqt5gui5 \
       libqt5x11extras5 \
       libsdl2-mixer-2.0-0 \

@@ -1,12 +1,10 @@
-[![](https://images.microbadger.com/badges/image/ecliptik/doomsday.svg)](http://microbadger.com/images/ecliptik/doomsday "Get your own image badge on microbadger.com")
-
 # doomsday
 Docker Container for [Doomsday Engine Multiplayer Server](https://manual.dengine.net/multiplayer/running_a_server).
 
 Dockerfile builds the following,
 
-- Ubuntu 18.04 and packages to run Doomsday 2.1
-- Downloads and installs Doomsday 2.1
+- Ubuntu 18.04 and packages to run Doomsday
+- Downloads and installs Doomsday
 - Downloads Doom1 Shareware WAD
 - Add basic deathmatch `autoexec.cfg`
 
@@ -37,4 +35,3 @@ Update the command line options to meet the game type, port etc. See the [Doomsd
 
 - Running the container without any arguments will not work, even if they're in the Dockerfile `CMD` statement. Workaround is to pass them in `docker run`
 - Ctrl-C to stop the container will not work, and the running container must be killed with `docker rm -f`
-
